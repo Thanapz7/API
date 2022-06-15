@@ -38,10 +38,10 @@ class Con:
 # for i in getdata:
 #     print(i)
     
-    def insertHW():
+    def insertHW(name, hw_name):
         mydb = conDB()
         mycursor = mydb.cursor(dictionary=True)
-        sql = "INSERT INTO hardware (name, hw_name, status, value) VALUES ('D3', 'servo', 'OFF', 0.00)"
+        sql = "INSERT INTO hardware (name, hw_name, status, value) VALUES ('{}', '{}', 'OFF', 0.00)".format(name, hw_name)
         mycursor.execute(sql)
         mydb.commit()
         ID = mycursor.lastrowid
@@ -51,10 +51,10 @@ class Con:
 # data = Con.insertHW()
 # print(data)
     
-    def updateHW():
+    def updateHW(ID, status):
         mydb = conDB()
         mycursor = mydb.cursor(dictionary=True)
-        sql = "UPDATE hardware SET status = 'ON' WHERE id = 19"
+        sql = "UPDATE hardware SET status = '{}' WHERE id = {}".format(status, ID)
         mycursor.execute(sql)
         mydb.commit()
         mycursor.close()
@@ -63,10 +63,10 @@ class Con:
 #data = Con.updateHW()
 #print(data)
 
-    def deleteHW():
+    def deleteHW(ID):
         mydb = conDB()
         mycursor = mydb.cursor(dictionary=True)
-        sql = "DELETE FROM hardware WHERE id =(SELECT MAX(id) FROM hardware)"
+        sql = "DELETE FROM hardware WHERE id ={}".format(ID)
         mycursor.execute(sql)
         mydb.commit()
         mycursor.close()
@@ -84,8 +84,14 @@ class Con:
         mycursor.close()
         mydb.close()
         return data 
-data = Con.selectHW()
-print(data)
 
-print("test")
-
+    def selectHW_byid(ID):
+        mydb = conDB()
+        mycursor = mydb.cursor(dictionary=True)
+        sql = "SELECT * FROM hardware WHERE id = {}".format(ID)
+        mycursor.execute(sql)
+        data = mycursor.fetchall()
+        mycursor.close()
+        mydb.close()
+        return data 
+    

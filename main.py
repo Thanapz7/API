@@ -2,6 +2,9 @@ from fastapi import FastAPI
 from h11 import Data
 import uvicorn
 
+from action import Action
+a = Action
+
 app = FastAPI()
 
 
@@ -43,6 +46,30 @@ def rserie_parallel(r1, r2, r3):
     data = {"R(serie)" :  rstotal, "R(parallel)" : rptotal } #"อนุกรม  = {} ขนาน = {}".format(rstotal, rptotal)
     return data
 
+@app.get("/gethw")
+def get_HW():
+    data = a.getHW()
+    return data
 
+@app.get("/update_status_hw")
+def update_status_hw(ID, status):
+    data = a.updateHW(ID, status)
+    return data
+
+@app.get("/selecthw_byid")
+def selecthw_byid(ID):
+    data = a.selectHW_byid(ID)
+    return data
+
+@app.get("/insert_hw")
+def insert_hw(name, hw_name):
+    data = a.insertHW(name, hw_name)
+    return data
+    
+@app.get("/deletehw_byid")
+def deleteHW_byid(ID):
+    data = a.deleteHW(ID)
+    return data
+    
 if __name__ == "__main__":
-    uvicorn.run(app, host='10.96.24.140', port=8000)
+    uvicorn.run(app, host='localhost', port=8000)
