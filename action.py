@@ -14,6 +14,14 @@ class Action:
             data = {"error": True}
         return data
     
+    def updateHWvalue(ID, value):
+        t = c.updateHWvalue(ID, value)
+        if(t == True):
+            data = c.selectHW_byid(ID)
+        else:
+            data = {"error": True}
+        return data
+    
     def selectHW_byid(ID):
         data = c.selectHW_byid(ID)
         return data

@@ -14,7 +14,7 @@ class Con:
     def getHW():
         mydb = conDB()
         mycursor = mydb.cursor(dictionary=True)
-        sql = "SELECT * FROM hardware"
+        sql = "SELECT value FROM hardware"
         mycursor.execute(sql)
         data = mycursor.fetchall()
         mycursor.close()
@@ -60,6 +60,16 @@ class Con:
         mycursor.close()
         mydb.close()
         return True
+    
+    def updateHWvalue(ID, value):
+        mydb = conDB()
+        mycursor = mydb.cursor(dictionary=True)
+        sql = "UPDATE hardware SET value = '{}' WHERE id = {}".format(value, ID)
+        mycursor.execute(sql)
+        mydb.commit()
+        mycursor.close()
+        mydb.close()
+        return True
 #data = Con.updateHW()
 #print(data)
 
@@ -95,3 +105,4 @@ class Con:
         mydb.close()
         return data 
     
+   
