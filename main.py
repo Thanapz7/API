@@ -26,7 +26,6 @@ def update_status_hw(ID, status):
 def update_status_hw(ID, value):
     value = float(value)
     data = a.updateHWvalue(ID, value)
-    data= True
     return data
 
 @app.get("/selecthw_byid")
@@ -45,4 +44,4 @@ def deleteHW_byid(ID):
     return data
     
 if __name__ == "__main__":
-    uvicorn.run(app, host='192.168.148.88', port=8000)
+    uvicorn.run(app, host='192.168.148.88', port=80)

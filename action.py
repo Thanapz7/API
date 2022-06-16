@@ -7,19 +7,11 @@ class Action:
         return data
     
     def updateHW(ID, status):
-        t = c.updateHW(ID, status)
-        if(t == True):
-            data = c.selectHW_byid(ID)
-        else:
-            data = {"error": True}
+        data = c.updateHW(ID, status)
         return data
     
     def updateHWvalue(ID, value):
-        t = c.updateHWvalue(ID, value)
-        if(t == True):
-            data = c.selectHW_byid(ID)
-        else:
-            data = {"error": True}
+        data = c.updateHWvalue(ID, value)
         return data
     
     def selectHW_byid(ID):
@@ -27,19 +19,11 @@ class Action:
         return data
     
     def insertHW(name, hw_name):
-        ID = c.insertHW(name, hw_name)
-        if(ID):
-            data = c.selectHW_byid(ID)
-        else:
-            data = {"error": True}
+        data = c.insertHW(name, hw_name)
         return data
     
     def deleteHW(ID):
-        t = c.deleteHW(ID)
-        if(t == True):
-            data = c.getHW()
-        else:
-            data = {"error" : True}
+        data = c.deleteHW(ID)
         return data
     
     

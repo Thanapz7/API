@@ -14,7 +14,7 @@ class Con:
     def getHW():
         mydb = conDB()
         mycursor = mydb.cursor(dictionary=True)
-        sql = "SELECT value FROM hardware"
+        sql = "SELECT value FROM hardware "
         mycursor.execute(sql)
         data = mycursor.fetchall()
         mycursor.close()
@@ -98,7 +98,7 @@ class Con:
     def selectHW_byid(ID):
         mydb = conDB()
         mycursor = mydb.cursor(dictionary=True)
-        sql = "SELECT * FROM hardware WHERE id = {}".format(ID)
+        sql = "SELECT * FROM hardware WHERE id = '{}'".format(ID)
         mycursor.execute(sql)
         data = mycursor.fetchall()
         mycursor.close()
